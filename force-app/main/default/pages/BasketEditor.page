@@ -1,0 +1,8 @@
+<apex:page controller="BasketEditorController">
+  <apex:slds />
+  <div class="slds-scope slds-p-around_small">
+    <h1>Basket Editor</h1>
+    <hr />
+    <p>Basket editor body...</p>
+  </div>
+</apex:page>
