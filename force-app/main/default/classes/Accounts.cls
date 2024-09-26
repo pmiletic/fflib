@@ -232,4 +232,11 @@ public with sharing class Accounts extends fflib_SObjects {
     };
     setFieldValueByMap(Account.Phone, Account.Phone, phoneUpdateMap);
   }
+
+  /*
+   * @description Update Accounts Priority On Type Change
+   */
+  public void updateAccountsPriorityOnTypeChange(Map<Object, Object> values) {
+    setFieldValueByMap(Account.Type, Account.CustomerPriority__c, values);
+  }
 }

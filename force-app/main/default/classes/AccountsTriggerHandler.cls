@@ -50,4 +50,53 @@ public with sharing class AccountsTriggerHandler extends TriggerHandlerBase {
 
     return getChangedRecords(fieldsToCheck);
   }
+
+  /*
+   * @description Update Priority if Type Changed
+   */
+  public void updatePriorityIfTypeChangedVariantOne() {
+    List<SObject> subset = getChangedRecords(
+      new Set<Schema.SObjectField>{ Account.Type }
+    );
+
+    if (subset.isEmpty()) {
+      return;
+    }
+
+    Accounts accounts = new Accounts((List<Account>) subset);
+
+    Map<Object, Object> typeToPriorityMap = new Map<Object, Object>{
+      'Prospect' => 'Low',
+      'Customer - Direct' => 'High',
+      'Customer - Channel' => 'Medium'
+    };
+
+    accounts.setFieldValueByMap(
+      Account.Type,
+      Account.CustomerPriority__c,
+      typeToPriorityMap
+    );
+  }
+
+  /*
+   * @description Update Priority if Type Changed
+   */
+  public void updatePriorityIfTypeChangedVariantTwo() {
+    List<SObject> subset = getChangedRecords(
+      new Set<Schema.SObjectField>{ Account.Type }
+    );
+
+    if (subset.isEmpty()) {
+      return;
+    }
+
+    Map<Object, Object> typeToPriorityMap = new Map<Object, Object>{
+      'Prospect' => 'Low',
+      'Customer - Direct' => 'High',
+      'Customer - Channel' => 'Medium'
+    };
+
+    Accounts.newInstance(subset)
+      .updateAccountsPriorityOnTypeChange(typeToPriorityMap);
+  }
 }
