@@ -1,11 +1,11 @@
 trigger AccountTrigger on Account(
-    after delete,
-    after insert,
-    after undelete,
-    after update,
-    before delete,
-    before insert,
-    before update
+  after delete,
+  after insert,
+  after undelete,
+  after update,
+  before delete,
+  before insert,
+  before update
 ) {
-    fflib_SObjectDomain.triggerHandler(AccountsTriggerHandler.class);
+  fflib_SObjectDomain.triggerHandler(AccountsTriggerHandler.class);
 }

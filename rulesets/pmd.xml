@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<project basedir="." default="info" name="MyProject">
+
+<!-- Set up the 'env' prefix for environment variables -->
+ <property environment="env" />
+
+ <!-- Abort the build if APEXPMD_HOME is not set -->
+ <target name="checkApexPMDHome" unless="env.APEXPMD_HOME">
+   <fail message="APEXPMD_HOME must be set!" />
+ </target>
+
+<path id="pmd.classpath">
+<fileset dir="${env.APEXPMD_HOME}">
+<include name="*.jar" />
+</fileset>
+</path>
+
+<target name="pmd">
+<taskdef
+      name="pmd"
+      classname="net.sourceforge.pmd.ant.PMDTask"
+      classpathref="pmd.classpath"
+    />
+<pmd shortFilenames="true" rulesetfiles="rules.xml">
+<formatter type="xml" toFile="pmd_results.xml" toConsole="true" />
+<fileset dir="../force-app/main/default/">
+<include name="**/*.cls" />
+</fileset>
+</pmd>
+</target>
+<target name="info">    
+<echo message="Available Targets:" />
+<echo message="pmd" />
+</target>
+</project>
