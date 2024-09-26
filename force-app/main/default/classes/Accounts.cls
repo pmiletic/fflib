@@ -2,12 +2,19 @@
  * Accounts domain class
  */
 public with sharing class Accounts extends fflib_SObjects {
-  // Constructor
+  /*
+   * @description Constructor
+   * @param records
+   */
   public Accounts(List<SObject> records) {
     super(records);
   }
 
-  // Optional Constructor
+  /*
+   * @description Optional Constructor
+   * @param records - List<SObject>
+   * @param sObjectType - Schema.SObjectType
+   */
   public Accounts(List<SObject> records, Schema.SObjectType sObjectType) {
     super(records, sObjectType);
   }
