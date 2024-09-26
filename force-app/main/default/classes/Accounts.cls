@@ -135,12 +135,8 @@ public with sharing class Accounts extends fflib_SObjects {
    *
    * @return Set<SObject>
    */
-  public List<SObject> getAccountsByIndustries(Set<String> industries) {
-    Set<Object> industriesAsObjects = new Set<Object>();
-    for (String industry : industries) {
-      industriesAsObjects.add((Object) industry);
-    }
-    return getRecordsByFieldValues(Account.Industry, industriesAsObjects);
+  public List<SObject> getAccountsByIndustries(Set<Object> industries) {
+    return getRecordsByFieldValues(Account.Industry, industries);
   }
 
   /*

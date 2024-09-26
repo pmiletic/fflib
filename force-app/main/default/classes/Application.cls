@@ -7,10 +7,7 @@ public with sharing class Application {
   );
 
   public static final fflib_Application.ServiceFactory service = new fflib_Application.ServiceFactory(
-    new Map<Type, Type>{
-      CasesService.class => CasesService.class,
-      OpportunitiesService.class => OpportunitiesService.class
-    }
+    new Map<Type, Type>{ CasesService.class => CasesService.class }
   );
 
   public static final fflib_Application.SelectorFactory selector = new fflib_Application.SelectorFactory(
@@ -25,7 +22,6 @@ public with sharing class Application {
     new Map<SObjectType, Type>{
       Account.sObjectType => Accounts.Constructor.class,
       Case.sObjectType => Cases.Constructor.class,
-      Opportunity.sObjectType => Opportunities.Constructor.class,
       Lead.sObjectType => Lead.Constructor.class
     }
   );
